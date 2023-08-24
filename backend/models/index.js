@@ -11,5 +11,6 @@ db.on('connected', function () {
 
 // Export models and seed data to `server.js`
 module.exports = {
-    Jewel: require('./jewel')
+    Jewel: require('./jewel'),
+    seedJewels: require('./seed')
 }
