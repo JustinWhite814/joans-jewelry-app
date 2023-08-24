@@ -6,11 +6,13 @@ const db = require('../models')
 
 
 router.get('/', (req, res)=> {
-    console.log('I am here')
     db.Jewel.find({})
         .then(jewels => res.json(jewels))
 })
 
-
+router.post('/', (req, res) => {
+    db.Jewel.create(req.body)
+        .then(jewels => res.json(jewels))
+})
 
 module.exports = router
