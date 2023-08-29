@@ -15,4 +15,19 @@ router.post('/', (req, res) => {
         .then(jewels => res.json(jewels))
 })
 
+router.put('/:id', (req, res) => {
+    db.Jewel.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {new: true}
+    )
+    .then(jewel => res.json(jewel))
+})
+
+router.delete('/:id', (req, res)=> {
+    console.log('I got hit')
+    db.Jewel.findByIdAndRemove(req.params.id)
+        .then(()=> res.json({ deletedJewelId : req.params.id }))
+})
+
 module.exports = router
