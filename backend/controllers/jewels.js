@@ -9,6 +9,19 @@ router.get('/', (req, res)=> {
     db.Jewel.find({})
         .then(jewels => res.json(jewels))
 })
+router.get('/:category', async (req, res) => {
+    const category = req.params.category;
+  
+    try {
+      // Find jewels with the specified category
+      const jewels = await db.Jewel.find({ category });
+      res.json(jewels);
+    } catch (error) {
+      // Handle errors
+      console.error(error);
+      res.status(500).json({ error: 'An error occurred' });
+    }
+  });
 
 router.post('/', (req, res) => {
     db.Jewel.create(req.body)
@@ -23,6 +36,7 @@ router.put('/:id', (req, res) => {
     )
     .then(jewel => res.json(jewel))
 })
+  
 
 router.delete('/:id', (req, res)=> {
     console.log('I got hit')
