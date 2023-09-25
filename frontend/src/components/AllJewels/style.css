@@ -1,0 +1,18 @@
+.container {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr); 
+   grid-gap: 16px; 
+   text-align: center;
+}
+/* columns */
+.container h2{
+    margin: 0;
+}
+
+
+/* 
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 600px; /* Change to your desired pixel width */

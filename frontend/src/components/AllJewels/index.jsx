@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import JewelCategory from '../JewelsCategory';
-
+import './style.css'
 function AllJewels() {
   const [jewels, setJewels] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null); // To keep track of the selected category
@@ -34,9 +34,10 @@ function AllJewels() {
       {selectedCategory && <h2>Selected Category: {selectedCategory}</h2>}
 
       {/* Render and categorize the fetched jewels */}
-      {jewels.map((jewel) => (
+      <div className='container'>{jewels.map((jewel) => (
         <JewelCategory key={jewel.id} jewel={jewel}/>
       ))}
+      </div>
     </>
   );
 }
