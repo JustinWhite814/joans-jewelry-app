@@ -1,17 +1,20 @@
 import React from 'react';
-
+import './style.css'
 function JewelCategory({ jewel }) {
-console.log(jewel.title)
+
   return (
-    <div>
-      {/* Render your jewels using the 'jewels' prop */}
-      <ul>
-        <li key={jewel.id}>{jewel.title}</li>
-        {/* {jewels.map((jewel) => (
-          <li key={jewel.id}>{jewel.title}</li>
-        ))} */}
-      </ul>
-    </div>
+    <>
+    <figure key={jewel.id}>
+       <img src={jewel.image} alt={jewel.title} />
+       <figcaption>
+        <h2 >{jewel.title}</h2>
+        <h2 >${jewel.price}</h2>
+        <h2 >{jewel.availability}</h2>
+       </figcaption>
+      
+     </figure>
+    </>
+
   );
 }
 
