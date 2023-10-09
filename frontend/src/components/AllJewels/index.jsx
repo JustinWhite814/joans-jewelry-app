@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import JewelCategory from '../JewelsCategory';
+import Navbar from '../Navbar';
 import './style.css'
 function AllJewels() {
   const [jewels, setJewels] = useState([]);
@@ -24,18 +25,11 @@ function AllJewels() {
 
   return (
     <>
-      {/* Create buttons for each category */}
-      <button onClick={() => fetchJewelsByCategory('chains')}>Chains</button>
-      <button onClick={() => fetchJewelsByCategory('bracelets')}>Bracelets</button>
-      <button onClick={() => fetchJewelsByCategory('earrings')}>Earrings</button>
-      <button onClick={() => fetchJewelsByCategory('rings')}>Rings</button>
-
-      {/* Display selected category */}
-      {selectedCategory && <h2>Selected Category: {selectedCategory}</h2>}
+      <Navbar selectedCategory={selectedCategory} fetchJewelsByCategory={fetchJewelsByCategory}/>
 
       {/* Render and categorize the fetched jewels */}
-      <div className='container'>{jewels.map((jewel) => (
-        <JewelCategory key={jewel.id} jewel={jewel}/>
+      <div className='container'>{jewels.map((jewel, index) => (
+        <JewelCategory key={jewel.id || index} jewel={jewel}/>
       ))}
       </div>
     </>
