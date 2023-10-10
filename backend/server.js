@@ -35,7 +35,7 @@ app.get('/seed', function (req, res) {
 
 
 // This is the mounting route
-app.use('/jewels', jewelControl)
+app.use('/api/jewels', jewelControl)
 
 // Listening on a specific port
 app.listen(process.env.PORT, function(){
