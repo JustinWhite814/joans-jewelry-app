@@ -1,6 +1,9 @@
 import {useState} from 'react'
-import { updateJewels } from '../../../utils/backend'
+import { updateJewels, deleteJewels } from '../../../utils/backend'
+import { useNavigate } from 'react-router-dom'
 export default function EditJewel({jewel}) {
+    const navigate = useNavigate()
+
     console.log('I am inside the editjewel component:', jewel)
     const [editFormData, setEditFormData] = useState({
         title: jewel.title,
@@ -20,7 +23,13 @@ export default function EditJewel({jewel}) {
   function handleSubmit(e){
     e.preventDefault()
     updateJewels(editFormData, jewel._id)
-        .then(() => console.log(editFormData))
+        .then(() => navigate('/details'))
+  }
+
+  function handleDelete(e){
+    e.preventDefault()
+    deleteJewels(jewel._id)
+        .then(() => navigate('/'))
   }
   return (
     <form
@@ -65,7 +74,12 @@ export default function EditJewel({jewel}) {
     <button
         type="submit"
         className="">
-        edit
+        Edit
+    </button>
+    <button
+        onClick={handleDelete}
+        className="">
+        Delete
     </button>
 </form>
   )
