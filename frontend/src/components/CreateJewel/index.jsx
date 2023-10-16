@@ -1,7 +1,9 @@
 import {useState, useEffect} from 'react'
 import { createJewels } from '../../../utils/backend'
+import { useNavigate } from 'react-router-dom'
 
 export default function CreateJewel() {
+    const navigate = useNavigate
     const [createFormData, setCreateFormData] = useState({
         title: '',
         price: '',
@@ -20,7 +22,7 @@ export default function CreateJewel() {
         image: ''
     })
     createJewels({...createFormData})
-        .then(() => console.log(createFormData))
+        .then(() => navigate('/'))
   }
   function handleInputChange(event) {
     setCreateFormData({

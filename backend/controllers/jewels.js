@@ -9,7 +9,14 @@ router.get('/', (req, res)=> {
     db.Jewel.find({})
         .then(jewels => res.json(jewels))
 })
-router.get('/:category', async (req, res) => {
+
+router.get('/:id', async (req, res) => {
+  console.log('I have been hit')
+  await db.Jewel.find({ _id: req.params.id })
+      .then(jewels => res.json(jewels))
+  });
+
+router.get('/category/:category', async (req, res) => {
     const category = req.params.category;
   
     try {
@@ -23,6 +30,9 @@ router.get('/:category', async (req, res) => {
     }
   });
 
+ 
+ 
+
 router.post('/', (req, res) => {
     db.Jewel.create(req.body)
         .then(jewels => res.json(jewels))
@@ -34,7 +44,8 @@ router.put('/:id', (req, res) => {
         req.body,
         {new: true}
     )
-    .then(jewel => res.json(jewel))
+    .then(jewel => {
+      res.json(jewel)})
 })
   
 

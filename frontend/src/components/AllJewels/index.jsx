@@ -8,7 +8,7 @@ function AllJewels({setJewelDetails}) {
 
   async function fetchJewelsByCategory(category) {
     try {
-      const res = await fetch(`http://localhost:3000/api/jewels/${category}`);
+      const res = await fetch(`http://localhost:3000/api/jewels/category/${category}`);
       const data = await res.json();
       setJewels(data);
       setSelectedCategory(category); // Update the selected category in state

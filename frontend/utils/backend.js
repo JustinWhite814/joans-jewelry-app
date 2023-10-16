@@ -5,6 +5,11 @@ export async function createJewels(jewel){
     return data
 }
 
+export async function getUpdatedJewel(id){
+    const data = await axios.get(`/api/jewels/${id}`)
+    return data
+}
+
 export async function updateJewels(jewel, id){
     const data = await axios.put(`/api/jewels/${id}`, jewel)
     return data

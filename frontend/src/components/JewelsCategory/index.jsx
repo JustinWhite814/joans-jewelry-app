@@ -4,7 +4,7 @@ function JewelCategory({ jewel, setJewelDetails }) {
 
   return (
     <Link
-      to={'/details'}
+      to={`/details/${jewel._id}`}
       onClick={() => {setJewelDetails(jewel)}}
     >
     <div className='card' key={jewel.id}>

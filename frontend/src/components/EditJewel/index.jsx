@@ -1,29 +1,42 @@
-import {useState} from 'react'
-import { updateJewels, deleteJewels } from '../../../utils/backend'
-import { useNavigate } from 'react-router-dom'
-export default function EditJewel({jewel}) {
+import {useState, useEffect} from 'react'
+import { updateJewels, deleteJewels, getUpdatedJewel } from '../../../utils/backend'
+import { useNavigate,useParams } from 'react-router-dom'
+export default function EditJewel({jewel, setJewelDetails}) {
+    console.log(jewel)
     const navigate = useNavigate()
-
-    console.log('I am inside the editjewel component:', jewel)
-    const [editFormData, setEditFormData] = useState({
+    const id = useParams()
+    const [editJewelData, setEditJewelData] = useState({
+        _id: jewel._id,
+        image: jewel.image,
         title: jewel.title,
         price: jewel.price,
         category: jewel.category,
-        availability: jewel.category,
-        image: jewel.image
+        availability: jewel.availability
+        
     })
 
+    
   function handleInputChange(event){
-    setEditFormData({
-        ...editFormData,
-        [event.target.name]: event.target.value
+    setEditJewelData({
+        ...editJewelData,
+        [event.target.name]: event.target.value,
+        id: jewel._id,
     })
   }  
-
+  
   function handleSubmit(e){
     e.preventDefault()
-    updateJewels(editFormData, jewel._id)
-        .then(() => navigate('/details'))
+    updateJewels(editJewelData, jewel._id)
+    .then((jewel) => {
+        getUpdatedJewel(jewel._id)
+    })
+        // .then(() => {
+        //     getUpdatedJewel(jewel._id)
+        //     .then(console.log(jewel))
+        //     })
+        .then(() => {
+              navigate(`/details/${jewel._id}`)
+        })
   }
 
   function handleDelete(e){
@@ -31,15 +44,26 @@ export default function EditJewel({jewel}) {
     deleteJewels(jewel._id)
         .then(() => navigate('/'))
   }
+
+
   return (
+    <>
+    
     <form
     onSubmit={handleSubmit}
     className="">
+      <input
+        name="image"
+        className=""
+        placeholder="img url"
+        value={editJewelData.image}
+        onChange={handleInputChange}
+    />
     <input
         name="title"
         className=""
-        placeholder="Jewel Title"
-        value={editFormData.title}
+        placeholder="title"
+        value={editJewelData.title}
         onChange={handleInputChange}
     />
     <br />
@@ -47,28 +71,21 @@ export default function EditJewel({jewel}) {
         name="price"
         className=""
         placeholder="price"
-        value={editFormData.price}
+        value={editJewelData.price}
         onChange={handleInputChange}
     />
     <input
         name="category"
         className=""
-        placeholder="category"
-        value={editFormData.category}
+        placeholder=""
+        value={editJewelData.category}
         onChange={handleInputChange}
     />
     <input
         name="availability"
         className=""
-        placeholder="availability"
-        value={editFormData.availability}
-        onChange={handleInputChange}
-    />
-    <input
-        name="image"
-        className=""
-        placeholder="img url"
-        value={editFormData.image}
+        placeholder=""
+        value={editJewelData.availability}
         onChange={handleInputChange}
     />
     <button
@@ -76,11 +93,12 @@ export default function EditJewel({jewel}) {
         className="">
         Edit
     </button>
-    <button
+</form>
+{/* <button
         onClick={handleDelete}
         className="">
         Delete
-    </button>
-</form>
+    </button> */}
+</>
   )
 }
