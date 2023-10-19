@@ -13,7 +13,7 @@ export default function App() {
           <Route path='/' element={<AllJewels setJewelDetails={setJewelDetails}/>}/>
           <Route path='/new' element={<CreateJewel />} />
           <Route path='/edit/:id' element={<EditJewel jewel={jewelDetails} setJewelDetails={setJewelDetails} />}/>
-          <Route path='/details/:id' element={<JewelDetails {...jewelDetails} setJewelDetails={setJewelDetails}/>} />
+          <Route path='/details/:id' element={<JewelDetails jewel={jewelDetails}/>} />
     </Routes>
 
     </>

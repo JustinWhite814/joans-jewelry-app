@@ -1,19 +1,15 @@
 const express = require('express')
-
 const router = express.Router()
-
 const db = require('../models')
 
-
-router.get('/', (req, res)=> {
-    db.Jewel.find({})
+router.get('/', async (req, res)=> {
+   await db.Jewel.find({})
         .then(jewels => res.json(jewels))
 })
 
 router.get('/:id', async (req, res) => {
-  console.log('I have been hit')
-  await db.Jewel.find({ _id: req.params.id })
-      .then(jewels => res.json(jewels))
+  await db.Jewel.findOne({ _id: req.params.id })
+      .then(jewel => res.json(jewel))
   });
 
 router.get('/category/:category', async (req, res) => {
@@ -50,7 +46,6 @@ router.put('/:id', (req, res) => {
   
 
 router.delete('/:id', (req, res)=> {
-    console.log('I got hit')
     db.Jewel.findByIdAndRemove(req.params.id)
         .then(()=> res.json({ deletedJewelId : req.params.id }))
 })

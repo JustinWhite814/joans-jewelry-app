@@ -2,11 +2,10 @@ import {useState, useEffect} from 'react'
 import { updateJewels, deleteJewels, getUpdatedJewel } from '../../../utils/backend'
 import { useNavigate,useParams } from 'react-router-dom'
 export default function EditJewel({jewel, setJewelDetails}) {
-    console.log(jewel)
+    // console.log(jewel)
     const navigate = useNavigate()
     const id = useParams()
     const [editJewelData, setEditJewelData] = useState({
-        _id: jewel._id,
         image: jewel.image,
         title: jewel.title,
         price: jewel.price,
@@ -20,23 +19,20 @@ export default function EditJewel({jewel, setJewelDetails}) {
     setEditJewelData({
         ...editJewelData,
         [event.target.name]: event.target.value,
-        id: jewel._id,
     })
   }  
   
   function handleSubmit(e){
     e.preventDefault()
     updateJewels(editJewelData, jewel._id)
-    .then((jewel) => {
-        getUpdatedJewel(jewel._id)
+       .then(() => {
+           getUpdatedJewel(jewel._id)
+            .then((updatedJewel) => 
+                {
+                setJewelDetails(updatedJewel)
+                navigate(`/details/${jewel._id}`)
+                })    
     })
-        // .then(() => {
-        //     getUpdatedJewel(jewel._id)
-        //     .then(console.log(jewel))
-        //     })
-        .then(() => {
-              navigate(`/details/${jewel._id}`)
-        })
   }
 
   function handleDelete(e){
@@ -94,11 +90,11 @@ export default function EditJewel({jewel, setJewelDetails}) {
         Edit
     </button>
 </form>
-{/* <button
+<button
         onClick={handleDelete}
         className="">
         Delete
-    </button> */}
+    </button>
 </>
   )
 }

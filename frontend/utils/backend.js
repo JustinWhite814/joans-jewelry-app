@@ -6,7 +6,7 @@ export async function createJewels(jewel){
 }
 
 export async function getUpdatedJewel(id){
-    const data = await axios.get(`/api/jewels/${id}`)
+    const {data} = await axios.get(`/api/jewels/${id}`)
     return data
 }
 
