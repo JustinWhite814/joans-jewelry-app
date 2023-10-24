@@ -29,7 +29,7 @@ function AllJewels({setJewelDetails}) {
 
       {/* Render and categorize the fetched jewels */}
       <div className='container'>{jewels.map((jewel, index) => (
-        <JewelCategory key={jewel.id || index} jewel={jewel} setJewelDetails={setJewelDetails}/>
+        <div className='item'><JewelCategory key={jewel.id || index} jewel={jewel} setJewelDetails={setJewelDetails}/></div>
       ))}
       </div>
     </>

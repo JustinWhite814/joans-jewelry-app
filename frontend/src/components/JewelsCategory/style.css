@@ -1,4 +1,14 @@
 .card {
-    /* border: 2px solid red; */
-    /* background-color: ; */
+    border: 2px solid;
+    background-color: rgb(0, 0, 0);
+  
+   /* height: 100px;  */
+}
+
+.card h2 {
+    flex: 1; /* Takes up the remaining vertical space */
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
