@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import { updateJewels, deleteJewels, getUpdatedJewel } from '../../../utils/backend'
 import { useNavigate,useParams } from 'react-router-dom'
+import './style.css'
 export default function EditJewel({jewel, setJewelDetails}) {
     // console.log(jewel)
     const navigate = useNavigate()
@@ -44,57 +45,59 @@ export default function EditJewel({jewel, setJewelDetails}) {
 
   return (
     <>
-    
-    <form
-    onSubmit={handleSubmit}
-    className="">
-      <input
-        name="image"
-        className=""
-        placeholder="img url"
-        value={editJewelData.image}
-        onChange={handleInputChange}
-    />
-    <input
-        name="title"
-        className=""
-        placeholder="title"
-        value={editJewelData.title}
-        onChange={handleInputChange}
-    />
-    <br />
-    <input
-        name="price"
-        className=""
-        placeholder="price"
-        value={editJewelData.price}
-        onChange={handleInputChange}
-    />
-    <input
-        name="category"
-        className=""
-        placeholder=""
-        value={editJewelData.category}
-        onChange={handleInputChange}
-    />
-    <input
-        name="availability"
-        className=""
-        placeholder=""
-        value={editJewelData.availability}
-        onChange={handleInputChange}
-    />
-    <button
-        type="submit"
-        className="">
-        Edit
-    </button>
-</form>
-<button
-        onClick={handleDelete}
-        className="">
-        Delete
-    </button>
+    <div className="formContainer">
+        <form onSubmit={handleSubmit}>
+            <input
+                name="image"
+                className=""
+                placeholder="img url"
+                value={editJewelData.image}
+                onChange={handleInputChange}
+            />
+            <input
+                name="title"
+                className=""
+                placeholder="title"
+                value={editJewelData.title}
+                onChange={handleInputChange}
+            />
+            <br />
+            <input
+                name="price"
+                className=""
+                placeholder="price"
+                value={editJewelData.price}
+                onChange={handleInputChange}
+            />
+            <input
+                name="category"
+                className=""
+                placeholder=""
+                value={editJewelData.category}
+                onChange={handleInputChange}
+            />
+            <input
+                name="availability"
+                className=""
+                placeholder=""
+                value={editJewelData.availability}
+                onChange={handleInputChange}
+            />
+            <div className="buttonContainer">
+                <button
+                    type="submit"
+                    className="">
+                    Edit
+                </button>
+                <button
+                    onClick={handleDelete}
+                    className="deleteButton">
+                    Delete
+                </button>
+            </div>
+        </form>
+    </div>
 </>
+
   )
 }
